@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static%}
+    <link rel="stylesheet" href="{% static 'c.css' %}">
+    <style>
+      .main{
+    margin-top: 15px;
+    display:flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;}
+   .col1{
+   width:50%;
+   height:100%;
+}
+  .col2{
+    width:50%;
+    height:100%;
+}
+    </style>
+</head>
+<body>
+
+<div calss="main">
+    <div class="col1">
+        <h1>Arbitrary</h1>
+        <h4>a slite track randomly planted rees </h4>
+        <table class="table table-dark">
+            <thead>
+              <tr>
+                <th scope="col">Species</th>
+                <th scope="col">Date Planted</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+             
+             {% for tree in mytrees %}
+                
+              <tr>
+                <td>{{tree.Species}}</td>
+                <td>{{tree.dateplann}}</td>
+                <td><p> <a href='/delete/{{tree.id}}'><u>delete</u>></a><a href='/edit/{{tree.id}}'><u>details</u></a></p></td>
+              </tr>
+              
+             {% endfor %}
+    
+             
+            </tbody>
+          </table>
+
+
+    </div>
+    <div class="col2">
+        <h1>Welcomme{{request.session.user}}</h1>
+        <button><a href="/page1">dashboard</a></button>
+        <button><a href="/logout" class="btn btn-info">Log Out</a></div></button>   
+    </div>
+</div>
+</body>
+</html>

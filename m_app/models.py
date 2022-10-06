@@ -1,4 +1,5 @@
 from __future__ import unicode_literals
+from email.policy import default
 from django.db import models
 from urllib import request
 import re, bcrypt
@@ -51,3 +52,12 @@ class User(models.Model):
     updated_at = models.DateTimeField(auto_now_add = True)
     objects = UserManager()
 
+
+class Tree(models.Model):
+    Species=models.CharField(max_length = 255)
+    location=models.CharField( max_length = 255)
+    region=models.CharField(max_length = 255)
+    dateplann= models.DateTimeField(auto_now_add = True)
+    planted_by=models.ForeignKey(User, related_name="user_trees",on_delete = models.CASCADE)
+    visitors=models.CharField(max_length = 45)
+    users= models.ManyToManyField(User, related_name="trees")

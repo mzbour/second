@@ -5,8 +5,78 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page1</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static%}
+    <link rel="stylesheet" href="{% static 'c.css' %}">
+   <style>
+    .form-group{
+    display: flex;
+    justify-content: space-between;
+    border-bottom:2px solid black ;}
+    .main{
+    margin-top: 15px;
+    display:flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;}
+   .col1{
+   width:50%;
+   height:100%;
+}
+  .col2{
+    width:50%;
+    height:100%;
+}
+
+   </style>
 </head>
 <body>
-   <h1>hello every one </h1> 
+
+    <!-- <div class="form-group">
+   <h1>hello {{request.session.user}} and the id is {{request.session.user_id}} </h1> 
+   <a href="/logout" class="btn btn-info">Log Out</a></div> -->
+<div class="main">  
+   <div class="col1">
+    <h1>Arbitrary</h1>
+    <h4>a slite track randomly planted rees </h4>
+    <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">Species</th>
+            <th scope="col">Planted By</th>
+            <th scope="col">Visitors</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        
+    <!-- # Species=models.CharField(max_length = 255)
+    # location=models.CharField( max_length = 255)
+    # region=models.CharField(max_length = 255)
+    # dateplann= models.DateTimeField(auto_now_add = True)
+    # planted_by=models.ForeignKey(User, related_name="user_trees",on_delete = models.CASCADE)
+    # visitors=models.CharField(max_length = 45)
+    # users= models.ManyToManyField(User, related_name="trees") -->
+         {% for tree in trees %}   
+          <tr>
+            <td>{{tree.Species}}</td>
+            <td>{{tree.planted_by.first_name}}  {{tree.planted_by.last_name}}</td>
+            <td>{{tree.visitors}}</td>
+            <td><p>  <a href='/show/{{tree.id}}'><u>details</u></a></p></td>
+          </tr>
+         {% endfor %}
+
+        </tbody>
+      </table>
+    </div>  
+<div class="col2">
+       <a href="/user/account/">MyTrees</a>
+       <h1>Welcome   ,{{request.session.user}}</h1>
+       <button><a href="/new/tree">Plant a tree </a></button>
+       <button><a href="/logout" class="btn btn-info">Log Out</a></button>
+    </div>
+    
+</div>
 </body>
 </html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static%}
+    <link rel="stylesheet" href="{% static 'c.css' %}">
+    <style>
+       .main{
+    margin-top: 15px;
+    display:flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;}
+   .col1{
+   width:50%;
+   height:100%;
+}
+  .col2{
+    width:50%;
+    height:100%;
+} 
+    </style>
+</head>
+<body>
+<div calss="main">
+    <div class="col1">
+     <h1>Re-Plant Your Tree</h1>
+     <form action="/update/{{mytree.id}}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label class="col-form-label">Speciliest</label>
+            <input type="text" class="form-control col-9" name="speciliest" value='speciliest' placeholder="{{mytree.Species}}">
+        </div>
+        <div class="form-group">
+            <label class="col-form-label">Location</label>
+            <input type="text" class="form-control col-9" name="location" value='location' placeholder="{{mytree.location}}">
+        </div>
+        <div class="form-group">
+            <label class="col-form-label">Reagin</label>
+            <input type="text" class="form-control col-9" name="region" value='region' placeholder="{{mytree.region}}">
+        </div>
+        <div class="form-group">
+            <label class="col-form-label">Date Planned</label>
+            <input type="date" class="form-control col-9" name="dateplann" value='dateplann'placeholder="{{mytree.dateplann}}">
+        </div>
+        <button type="submit">Update</button>
+    </form>
+    </div>
+    <div class="col2">
+        <a href="/user/account">MyTrees</a>
+        <h1>Welcomme{{request.session.user}}</h1>
+        <button><a href="/page1">dashboard</a></button>
+        <button><a href="/logout" class="btn btn-info">Log Out</a></div></button>
+    </div>
+</div>
+</body>
+</html>
